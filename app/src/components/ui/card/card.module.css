@@ -1,0 +1,35 @@
+.card {
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 420px; /* ajuste conforme necessario */
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+.cardHeader {
+  padding: 16px 20px;
+  border-bottom: 1px solid #e5e7eb;
+  font-weight: 600;
+  font-size: 1.125rem;
+  color: #111827;
+}
+
+.cardBody {
+  padding: 20px;
+  flex: 1;
+  color: #4b5563;
+  line-height: 1.6;
+}
+
+.cardFooter {
+  padding: 16px 20px;
+  border-top: 1px solid #e5e7eb;
+  background-color: #f9fafb;
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+}
