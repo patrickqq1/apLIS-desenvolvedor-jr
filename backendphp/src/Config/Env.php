@@ -12,8 +12,8 @@ final class Env
             "DB_HOST" => getenv("DB_HOST") ?: "127.0.0.1",
             "DB_PORT" => getenv("DB_PORT") ?: "3306",
             "DB_NAME" => getenv("DB_NAME") ?: "aplis",
-            "DB_USER" => getenv("DB_USER") ?: "root",
-            "DB_PASSWORD" => getenv("DB_PASSWORD") ?: "",
+            "DB_USER" => getenv("DB_USER") ?: "mysql",
+            "DB_PASSWORD" => getenv("DB_PASSWORD") ?: "root",
         ];
     }
 }

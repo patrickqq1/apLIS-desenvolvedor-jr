@@ -176,9 +176,18 @@ const FormCadastroMedico = () => {
                   <input
                     name="nome"
                     value={pacienteForm.nome}
-                    onChange={handlePacienteChange}
+                    onChange={(e) => {
+                      const onlyLetters = e.target.value.replace(/[^a-zA-ZÀ-ÿ\s]/g, "");
+                      handlePacienteChange({
+                        target: {
+                          name: "nome",
+                          value: onlyLetters,
+                        },
+                      });
+                    }}
                     required
                     type="text"
+                    pattern="[A-Za-zÀ-ÿ\s]+"
                   />
                 </label>
 
@@ -198,9 +207,19 @@ const FormCadastroMedico = () => {
                   <input
                     name="carteirinha"
                     value={pacienteForm.carteirinha}
-                    onChange={handlePacienteChange}
+                    onChange={(e) => {
+                      const onlyNumbers = e.target.value.replace(/\D/g, "");
+                      handlePacienteChange({
+                        target: {
+                          name: "carteirinha",
+                          value: onlyNumbers,
+                        },
+                      });
+                    }}
                     required
                     type="text"
+                    inputMode="numeric"
+                    pattern="[0-9]*"
                   />
                 </label>
 
@@ -209,12 +228,21 @@ const FormCadastroMedico = () => {
                   <input
                     name="cpf"
                     value={pacienteForm.cpf}
-                    onChange={handlePacienteChange}
+                    onChange={(e) => {
+                      const onlyNumbers = e.target.value.replace(/\D/g, "");
+                      handlePacienteChange({
+                        target: {
+                          name: "cpf",
+                          value: onlyNumbers,
+                        },
+                      });
+                    }}
                     required
                     maxLength={11}
                     minLength={11}
                     pattern="[0-9]{11}"
                     type="text"
+                    inputMode="numeric"
                   />
                 </label>
               </div>
@@ -255,9 +283,19 @@ const FormCadastroMedico = () => {
                   <input
                     name="nome"
                     value={medicoForm.nome}
-                    onChange={handleMedicoChange}
+                    onChange={(e) => {
+                      const onlyLetters = e.target.value.replace(/[^a-zA-ZÀ-ÿ\s]/g, "");
+
+                      handleMedicoChange({
+                        target: {
+                          name: "nome",
+                          value: onlyLetters,
+                        },
+                      });
+                    }}
                     required
                     type="text"
+                    pattern="[A-Za-zÀ-ÿ\s]+"
                   />
                 </label>
 
@@ -266,24 +304,68 @@ const FormCadastroMedico = () => {
                   <input
                     name="CRM"
                     value={medicoForm.CRM}
-                    onChange={handleMedicoChange}
+                    onChange={(e) => {
+                      const onlyNumbers = e.target.value.replace(/\D/g, "");
+                      handleMedicoChange({
+                        target: {
+                          name: "CRM",
+                          value: onlyNumbers,
+                        },
+                      });
+                    }}
                     required
                     type="text"
+                    inputMode="numeric"
+                    pattern="[0-9]*"
                   />
                 </label>
 
-                <label>
-                  UFCRM
-                  <input
+                <div
+                  style={{
+                    width: "80px",
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: "0.5rem",
+                  }}
+                >
+                  <label
+                    style={{
+                      fontSize: "0.875rem",
+                      color: "var(--text-muted)",
+                    }}
+                  >
+                    UFCRM
+                  </label>
+
+                  <select
                     name="UFCRM"
+                    required
                     value={medicoForm.UFCRM}
                     onChange={handleMedicoChange}
-                    required
-                    maxLength={2}
-                    minLength={2}
-                    type="text"
-                  />
-                </label>
+                    style={{
+                      padding: "0.75rem 1rem",
+                      borderRadius: "12px",
+                      backgroundColor: "#fff",
+                      border: "1px solid #cbd5e1",
+                      color: "#000",
+                      textAlign: "center",
+                      outline: "none",
+                      cursor: "pointer",
+                    }}
+                  >
+                    <option value="">UF</option>
+
+                    {[
+                      "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA",
+                      "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN",
+                      "RS", "RO", "RR", "SC", "SP", "SE", "TO"
+                    ].map((uf) => (
+                      <option key={uf} value={uf}>
+                        {uf}
+                      </option>
+                    ))}
+                  </select>
+                </div>
               </div>
 
               {error ? <p className="error-message">{error}</p> : null}
